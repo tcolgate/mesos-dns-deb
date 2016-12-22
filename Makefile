@@ -3,7 +3,7 @@ PACKAGE_NAME=mesos-dns
 PACKAGE_VERSION=0.6.0
 HASH="a84227844d74abd2b0cb37f32975b324694f4ac8eaa3f55a640647c92af8eec0  mesos-dns"
 
-PACKAGE_REVISION=1
+PACKAGE_REVISION=2
 PACKAGE_ARCH=amd64
 PACKAGE_MAINTAINER=tristan@qubit.com
 PACKAGE_FILE=$(PACKAGE_NAME)_$(PACKAGE_VERSION)-$(PACKAGE_REVISION)_$(PACKAGE_ARCH).$(TARGET)
@@ -31,6 +31,8 @@ binary: clean-bianry
 	mkdir -p dist/etc/default
 	install -m644 $(BINNAME).conf dist/etc/init/$(BINNAME).conf
 	install -m644 $(BINNAME).defaults dist/etc/default/$(BINNAME)
+	mkdir -p dist/etc/mesos-dns
+	install -m644 config.json dist/etc/mesos-dns/config.json
 
 clean-bianry:
 	rm -f dist/*
